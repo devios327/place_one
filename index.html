@@ -7,7 +7,11 @@
 		<script src="GitHub.bundle.min.js"></script>
 	</head>
 	<body>
-
+		<div align="center">
+			Last time of PIR activated:
+			<div data-last-time="0">
+			</div>
+		</div>
 	</body>
 
 	<script>
@@ -26,40 +30,40 @@
 		}
 
 		var query = getQueryParams(document.location.search);
-		console.log(query, new Date())
-		/*
-		function logResults(json) {
-			console.log(json)
+		if (query.alarm){
+			// Creates a new instance of the Github object exposed by Github.js
+			var github = new GitHub({
+				username: 'devios327',
+				password: 'aceJqjp8890',
+				auth: 'basic'
+			});
+			
+			// Creates an object representing the repository you want to work with
+			var repository = github.getRepo('devios327', 'place_one');
+			console.log(repository)
+			// Creates a new file (or updates it if the file already exists)
+			// with the content provided
+			repository.writeFile(
+				'main', // e.g. 'master'
+				'json_db/currentState', // e.g. 'blog/index.md'
+				query.alarm, // e.g. 'Hello world, this is my new content'
+				'Created', // e.g. 'Created new index'
+				function(err) {
+					console.log('errororor uplodaing')
+				}
+			);
 		}
-
-		$.ajax({
-			url: "https://raw.githubusercontent.com/devios327/place_one/main/json_db/currentState",
-			dataType: "json"
-		}).done(function(result){
-			console.log(result);
-		});
-
-		// Creates a new instance of the Github object exposed by Github.js
-		var github = new GitHub({
-			username: 'devios327',
-			password: 'aceJqjp8890',
-			auth: 'basic'
-		});
-		
-		// Creates an object representing the repository you want to work with
-		var repository = github.getRepo('devios327', 'place_one');
-		console.log(repository)
-		// Creates a new file (or updates it if the file already exists)
-		// with the content provided
-		repository.writeFile(
-			'main', // e.g. 'master'
-			'json_db/currentState', // e.g. 'blog/index.md'
-			'Hello' + Math.random(), // e.g. 'Hello world, this is my new content'
-			'Created', // e.g. 'Created new index'
-			function(err) {
-				console.log('errororor uplodaing')
+		else{		
+			var request = new XMLHttpRequest();
+			request.open('GET', 'https://raw.githubusercontent.com/devios327/place_one/main/json_db/currentState', true)
+			request.send(null)
+			request.onreadystatechange = function () {
+				if (request.readyState === 4 && request.status === 200) {
+					var type = request.getResponseHeader('Content-Type')
+					
+					document.querySelector('[data-last-time]').innerHTML = request.responseText
+				}
 			}
-		);
-		*/
+		}
 	</script>
 </html>
