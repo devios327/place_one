@@ -11,47 +11,50 @@
 			<div data-last-time="0">
 			</div>
 		</div>
+
+		<!-- The core Firebase JS SDK is always required and must be listed first -->
+		
+		<script src="https://www.gstatic.com/firebasejs/7.23.0/firebase-app.js"></script>
+		<script src="https://www.gstatic.com/firebasejs/3.1.0/firebase-database.js"></script>
+		<script src="https://www.gstatic.com/firebasejs/3.1.0/firebase-auth.js"></script>
+
+
+		<!-- TODO: Add SDKs for Firebase products that you want to use
+			https://firebase.google.com/docs/web/setup#available-libraries -->
+
+		<script>
+			// Your web app's Firebase configuration
+			var firebaseConfig = {
+				apiKey: "AIzaSyBf6cUNp_wR9WAF4JqKD_hrEs25MIERpw8",
+				authDomain: "hello-5a0c8.firebaseapp.com",
+				databaseURL: "https://hello-5a0c8.firebaseio.com",
+				projectId: "hello-5a0c8",
+				storageBucket: "hello-5a0c8.appspot.com",
+				messagingSenderId: "400420391280",
+				appId: "1:400420391280:web:955439c3841a16ec0127b5"
+			};
+			// Initialize Firebase
+			firebase.initializeApp(firebaseConfig);
+		</script>
 	</body>
 
-	<!-- The core Firebase JS SDK is always required and must be listed first -->
-	<script src="https://www.gstatic.com/firebasejs/7.23.0/firebase-app.js"></script>
-
-	<!-- TODO: Add SDKs for Firebase products that you want to use
-		https://firebase.google.com/docs/web/setup#available-libraries -->
-
 	<script>
-		// Your web app's Firebase configuration
-		var firebaseConfig = {
-			apiKey: "AIzaSyBf6cUNp_wR9WAF4JqKD_hrEs25MIERpw8",
-			authDomain: "hello-5a0c8.firebaseapp.com",
-			databaseURL: "https://hello-5a0c8.firebaseio.com",
-			projectId: "hello-5a0c8",
-			storageBucket: "hello-5a0c8.appspot.com",
-			messagingSenderId: "400420391280",
-			appId: "1:400420391280:web:955439c3841a16ec0127b5"
-		};
-		// Initialize Firebase
-		firebase.initializeApp(firebaseConfig);
-		
-		
-		function saveToFirebase(email) {
-			var emailObject = {
-				email: email
-			};
-			
-			console.log(firebase)
-			/*
-			firebase.database().ref('subscription-entries').push().set(emailObject)
-				.then(function(snapshot) {
-					console.log('success')
-					//success(); // some success method
-				}, function(error) {
-					console.log('error' + error);
-					error(); // some error method
-				});
-			*/
-		}
+			function saveToFirebase(email) {
+				var emailObject = {
+					email: email
+				};
+				
+				console.log(firebase)
+				firebase.database().ref('subscription-entries').push().set(emailObject)
+					.then(function(snapshot) {
+						console.log('success')
+						//success(); // some success method
+					}, function(error) {
+						console.log('error' + error);
+						error(); // some error method
+					});
+			}
 
-		saveToFirebase(new Date());
+			saveToFirebase(new Date());
 	</script>
 </html>
