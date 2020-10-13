@@ -43,8 +43,8 @@
 					email: email
 				};
 				
-				console.log(firebase.database().ref('subscription-entries'))
-				firebase.database().ref('subscription-entries').push().set(emailObject)
+				console.log(firebase.database().ref('hello-5a0c8'))
+				firebase.database().ref('hello-5a0c8').push().set(emailObject)
 					.then(function(snapshot) {
 						console.log('success', emailObject)
 						//success(); // some success method
