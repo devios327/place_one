@@ -7,7 +7,13 @@
 	</head>
 	<body>
 		<div align="center">
-			<div data-last-time="0">
+			Last life time:
+			<div data-last-life-time="0">
+				connecting...
+			</div>
+			Last alarm time:
+			<div data-last-alarm-time="0">
+				connecting...
 			</div>
 		</div>
 
@@ -38,22 +44,35 @@
 	</body>
 
 	<script>
-			function saveToFirebase(email) {
-				var emailObject = {
-					email: email
-				};
-				
-				console.log(firebase.database().ref('hello-5a0c8'))
-				firebase.database().ref('hello-5a0c8').push().set(emailObject)
-					.then(function(snapshot) {
-						console.log('success', emailObject)
-						//success(); // some success method
-					}, function(error) {
-						console.log('error' + error);
-						error(); // some error method
-					});
+			function saveAlarm() {
+				firebase.database().ref('alarms/lastAlarm').set({
+					time: (new Date()).toString()
+				})
 			}
 
-			saveToFirebase(new Date());
+			//saveAlarm()
+
+			function saveLife() {
+				firebase.database().ref('life/lastLife').set({
+					time: (new Date()).toString()
+				})
+			}
+
+			//saveLife()
+
+			function getAlarm(){
+				firebase.database().ref('alarms/lastAlarm').once('value').then(function(snapshot) {
+					document.querySelector('[data-last-alarm-time]').innerHTML = snapshot.val().time
+				})
+			}
+
+			function getLife(){
+				firebase.database().ref('life/lastLife').once('value').then(function(snapshot) {
+					document.querySelector('[data-last-life-time]').innerHTML = snapshot.val().time
+				})
+			}
+
+			getLife()
+			getAlarm()
 	</script>
 </html>
