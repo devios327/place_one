@@ -4,7 +4,6 @@
 		<title></title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-		<script src="GitHub.bundle.min.js"></script>
 	</head>
 	<body>
 		<div align="center">
@@ -33,61 +32,6 @@
 		};
 		// Initialize Firebase
 		firebase.initializeApp(firebaseConfig);
-	</script>
-
-	<script>
-		/*
-		function getQueryParams(qs) {
-			qs = qs.split('+').join(' ');
-
-			var params = {},
-				tokens,
-				re = /[?&]?([^=]+)=([^&]*)/g;
-
-			while (tokens = re.exec(qs)) {
-				params[decodeURIComponent(tokens[1])] = decodeURIComponent(tokens[2]);
-			}
-
-			return params;
-		}
-
-		var query = getQueryParams(document.location.search);
-		if (query.alarm){
-			// Creates a new instance of the Github object exposed by Github.js
-			var github = new GitHub({
-				username: 'devios327',
-				password: 'aceJqjp8890'
-			});
-			
-			// Creates an object representing the repository you want to work with
-			var repository = github.getRepo('devios327', 'place_one');
-			
-			// Creates a new file (or updates it if the file already exists)
-			// with the content provided
-			repository.writeFile(
-				'main', 
-				'json_db/currentState',
-				query.alarm + ' ' + (new Date()),
-				'Created',
-				function(pp) {
-					console.log('in', pp)
-				}
-			);
-		}
-		else{		
-			var request = new XMLHttpRequest();
-			//request.open('GET', 'https://raw.githubusercontent.com/devios327/place_one/main/json_db/currentState', true)
-			request.open('GET', 'https://github.com/devios327/place_one/blob/main/json_db/currentState', false)
-			request.send(null)
-			request.onreadystatechange = function () {
-				if (request.readyState === 4 && request.status === 200) {
-					var type = request.getResponseHeader('Content-Type')
-					
-					document.querySelector('[data-last-time]').innerHTML = request.responseText
-				}
-			}
-		}
-		*/
 		
 		function saveToFirebase(email) {
 			var emailObject = {
