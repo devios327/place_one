@@ -7,7 +7,6 @@
 	</head>
 	<body>
 		<div align="center">
-			Last time of PIR activated:
 			<div data-last-time="0">
 			</div>
 		</div>
@@ -15,9 +14,9 @@
 		<!-- The core Firebase JS SDK is always required and must be listed first -->
 		
 		<script src="https://www.gstatic.com/firebasejs/7.23.0/firebase-app.js"></script>
-		<script src="https://www.gstatic.com/firebasejs/3.1.0/firebase-database.js"></script>
-		<script src="https://www.gstatic.com/firebasejs/3.1.0/firebase-auth.js"></script>
 
+		<script src="https://www.gstatic.com/firebasejs/7.6.1/firebase-auth.js"></script>
+		<script src="https://www.gstatic.com/firebasejs/7.6.1/firebase-database.js"></script>
 
 		<!-- TODO: Add SDKs for Firebase products that you want to use
 			https://firebase.google.com/docs/web/setup#available-libraries -->
@@ -44,10 +43,10 @@
 					email: email
 				};
 				
-				console.log(firebase)
+				console.log(firebase.database().ref('subscription-entries'))
 				firebase.database().ref('subscription-entries').push().set(emailObject)
 					.then(function(snapshot) {
-						console.log('success')
+						console.log('success', emailObject)
 						//success(); // some success method
 					}, function(error) {
 						console.log('error' + error);
