@@ -44,35 +44,45 @@
 	</body>
 
 	<script>
-			function saveAlarm() {
-				firebase.database().ref('alarms/lastAlarm').set({
-					time: (new Date()).toString()
-				})
-			}
+		function saveAlarm() {
+			firebase.database().ref('alarms/lastAlarm').set({
+				time: (new Date()).toString()
+			})
+		}
 
-			//saveAlarm()
+		function saveLife() {
+			firebase.database().ref('life/lastLife').set({
+				time: (new Date()).toString()
+			})
+		}
 
-			function saveLife() {
-				firebase.database().ref('life/lastLife').set({
-					time: (new Date()).toString()
-				})
-			}
+		function getAlarm(){
+			firebase.database().ref('alarms/lastAlarm').once('value').then(function(snapshot) {
+				document.querySelector('[data-last-alarm-time]').innerHTML = snapshot.val().time
+			})
+		}
 
-			//saveLife()
+		function getLife(){
+			firebase.database().ref('life/lastLife').once('value').then(function(snapshot) {
+				document.querySelector('[data-last-life-time]').innerHTML = snapshot.val().time
+			})
+		}
 
-			function getAlarm(){
-				firebase.database().ref('alarms/lastAlarm').once('value').then(function(snapshot) {
-					document.querySelector('[data-last-alarm-time]').innerHTML = snapshot.val().time
-				})
-			}
-
-			function getLife(){
-				firebase.database().ref('life/lastLife').once('value').then(function(snapshot) {
-					document.querySelector('[data-last-life-time]').innerHTML = snapshot.val().time
-				})
-			}
-
+		const queryString = window.location.search;
+		const urlParams = new URLSearchParams(queryString);
+		const page_type = urlParams.get('type')||'view'
+		
+		if (page_type=='view'){
 			getLife()
 			getAlarm()
+		}
+		else
+		if (page_type=="alarm"){
+			saveAlarm()
+		}
+		else
+		if (page_type=="life"){
+			saveLife()
+		}
 	</script>
 </html>
