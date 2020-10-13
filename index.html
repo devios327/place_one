@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 <html>
 	<head>
-		<title></title>
+		<title>ALARM WEB</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 	</head>
@@ -29,7 +29,7 @@
 
 		<script>
 			// Your web app's Firebase configuration
-			var firebaseConfig = {
+			const firebaseConfig = {
 				apiKey: "AIzaSyBf6cUNp_wR9WAF4JqKD_hrEs25MIERpw8",
 				authDomain: "hello-5a0c8.firebaseapp.com",
 				databaseURL: "https://hello-5a0c8.firebaseio.com",
@@ -72,6 +72,8 @@
 		const urlParams = new URLSearchParams(queryString);
 		const page_type = urlParams.get('type')||'view'
 		
+		console.log(`page_type=${page_type}`)
+
 		if (page_type=='view'){
 			getLife()
 			getAlarm()
