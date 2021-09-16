@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
+		<title></title>
+
+		
+		<script src="./i/libs/ammo.js"></script>
+        <script src="./i/libs/cannon.js"></script>
+        <script src="./i/libs/Oimo.js"></script>
+        <script src="./i/libs/earcut.min.js"></script>
+        <script src="./i/libs/babylon.js"></script>
+        <script src="./i/libs/materialsLibrary/babylonjs.materials.min.js"></script>
+        <script src="./i/libs/proceduralTexturesLibrary/babylonjs.proceduralTextures.min.js"></script>
+        <script src="./i/libs/postProcessesLibrary/babylonjs.postProcess.min.js"></script>
+        <script src="./i/libs/loaders/babylonjs.loaders.min.js"></script>
+		<script src="./i/libs/serializers/babylonjs.serializers.min.js"></script>
+        <script src="./i/libs/gui/babylon.gui.min.js"></script>
+        <script src="./i/libs/inspector/babylon.inspector.bundle.js"></script>
+	<script type="text/javascript" src="lab_glass_water.js"></script></head>
+	<body>
+		<div>
+			<div class="container-lab_glass_water">
+				<canvas class="renderCanvas"></canvas>
+				<div class="gui-wrapper"></div>
+			</div>
+		</div>
+
+		<script>
+			window['lab_glass_water'].initLab(document.querySelector('.container-lab_glass_water'), [], function() {
+				console.log('Interactive has been loaded');
+			});
+		</script>
+	</body>
+</html>
